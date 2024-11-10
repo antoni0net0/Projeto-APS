@@ -1,15 +1,15 @@
 using System;
 
-namespace Entidades
+namespace Entities
 {
-    class Empresa : Entidade
+    class Company : Entity
     {
-        public string Senha { get; private set; }
+        public string Password { get; private set; }
         public string Cnpj { get; private set; }
         
-        private List<Funcionario> ListaFuncionarios;
+        private List<Employee> EmployeeList;
 
-        public Empresa()
+        public Company()
         {
         }
         
@@ -21,7 +21,7 @@ namespace Entidades
         {
         }
 
-        public void VerificarDespesas(List<Funcionario> lista)
+        public void CheckExpenses(List<Employee> list)
         {
         }
     }

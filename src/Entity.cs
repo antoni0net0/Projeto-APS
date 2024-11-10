@@ -5,10 +5,10 @@ namespace Entities
     class Entity
     {
         protected int id;
-        protected string Nome { get; private set; };
+        protected string Name { get; private set; };
         protected string Email { get; private set; };
-        protected string Telefone { get; private set; };
-        protected string Endereco { get; private set; };
+        protected string Phone { get; private set; };
+        protected string Address { get; private set; };
 
         public Entity()
         {
@@ -19,8 +19,5 @@ namespace Entities
             return id;
         }
         
-        ~Entidade()
-        {
-        }
     }
 }

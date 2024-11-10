@@ -1,14 +1,14 @@
 using System;
 
-namespace Entidades
+namespace Entities
 {
-    class Employee : Entidade
+    class Employee : Entity
     {
-        public double Salario { get; private set; }
-        public string Cargo { get; private set; }
-        public int IdEmpresa { get; private set; }
+        public double Salary { get; private set; }
+        public string Role { get; private set; }
+        public int CompanyId { get; private set; }
 
-        public Funcionario()
+        public Employee()
         {
         }
         

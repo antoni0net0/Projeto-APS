@@ -1,22 +1,22 @@
 using System;
 
-class Movimentacao
+class Transaction
 {
-    public string Data { get; private set; }
-    public string Tipo { get; private set; }
-    public double Valor { get; private set; }
+    public string Date { get; private set; }
+    public string Type { get; private set; }
+    public double Value { get; private set; }
 
-    public Movimentacao() { }
+    public Transaction() { }
 
-    public Movimentacao(string data, string tipo, double valor)
+    public Transaction(string date, string type, double value)
     {
-        Data = data;
-        Tipo = tipo;
-        Valor = valor;
+        Date = date;
+        Type = type;
+        Value = value;
     }
 
-    public void calcular_despesa()
+    public void CalculateExpenses()
     {
-        Console.WriteLine("Calculando despesas...");
+        Console.WriteLine("Calculating Expenses...");
     }
 }
