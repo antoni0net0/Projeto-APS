@@ -1,7 +1,8 @@
-/*https://www.codeproject.com/Articles/43438/Connect-Csharp-to-MySQL*/
+namespace aps_project;
+// https://www.codeproject.com/Articles/43438/Connect-Csharp-to-MySQL
 
 
-class DBConnect
+class DbConnect
 {
     private MySqlConnection connection;
     private string server;
@@ -10,7 +11,7 @@ class DBConnect
     private string password;
 
     //Constructor
-    public DBConnect()
+    public DbConnect()
     {
         Initialize();
     }
