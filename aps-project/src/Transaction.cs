@@ -1,13 +1,11 @@
-using System;
+namespace aps_project;
 
-class Transaction
+public class Transaction
 {
     public string Date { get; private set; }
     public string Type { get; private set; }
     public double Value { get; private set; }
-
-    public Transaction() { }
-
+    
     public Transaction(string date, string type, double value)
     {
         Date = date;
