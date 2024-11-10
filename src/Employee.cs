@@ -2,7 +2,7 @@ using System;
 
 namespace Entidades
 {
-    class Funcionario : Entidade
+    class Employee : Entidade
     {
         public double Salario { get; private set; }
         public string Cargo { get; private set; }

@@ -1,8 +1,8 @@
 using System;
 
-namespace Entidades
+namespace Entities
 {
-    class Entidade
+    class Entity
     {
         protected int id;
         protected string Nome { get; private set; };
@@ -10,7 +10,7 @@ namespace Entidades
         protected string Telefone { get; private set; };
         protected string Endereco { get; private set; };
 
-        public Entidade()
+        public Entity()
         {
         }
 
