@@ -4,27 +4,13 @@ namespace Entidades
 {
     class Funcionario : Entidade
     {
-        private double salario;
-        private string cargo;
-        private int idempresa;
+        public double Salario { get; private set; }
+        public string Cargo { get; private set; }
+        public int IdEmpresa { get; private set; }
 
         public Funcionario()
         {
         }
-
-        public double get_salario()
-        {
-            return salario;
-        }
-
-        public string get_cargo()
-        {
-            return cargo;
-        }
-
-        public int get_idempresa()
-        {
-            return idempresa;
-        }
+        
     }
 }

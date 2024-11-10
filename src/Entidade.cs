@@ -5,10 +5,10 @@ namespace Entidades
     class Entidade
     {
         protected int id;
-        protected string nome;
-        protected string email;
-        protected string telefone;
-        protected string endereco;
+        protected string Nome { get; private set; };
+        protected string Email { get; private set; };
+        protected string Telefone { get; private set; };
+        protected string Endereco { get; private set; };
 
         public Entidade()
         {
@@ -17,26 +17,6 @@ namespace Entidades
         public int get_ID()
         {
             return id;
-        }
-
-        public string get_nome()
-        {
-             return nome;
-        }
-
-        public string get_email()
-        {
-            return email;
-        }
-
-        public string get_telefone()
-        {
-            return telefone;
-        }
-
-        public string get_endereco()
-        {
-            return Endereco;
         }
         
         ~Entidade()

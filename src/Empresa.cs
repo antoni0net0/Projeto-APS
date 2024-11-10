@@ -4,10 +4,10 @@ namespace Entidades
 {
     class Empresa : Entidade
     {
-        private string senha;
-        private string cnpj;
+        public string Senha { get; private set; }
+        public string Cnpj { get; private set; }
         
-        private List<Funcionario> lista_funcionarios;
+        private List<Funcionario> ListaFuncionarios;
 
         public Empresa()
         {
@@ -19,16 +19,6 @@ namespace Entidades
 
         public void Logout()
         {
-        }
-
-        public string get_senha()
-        {
-            return senha;
-        }
-
-        public string get_cnpj()
-        {
-            return cnpj;
         }
 
         public void VerificarDespesas(List<Funcionario> lista)

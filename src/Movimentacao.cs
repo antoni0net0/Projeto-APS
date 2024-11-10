@@ -2,37 +2,21 @@ using System;
 
 class Movimentacao
 {
-    private string data;
-    private string tipo;
-    private double valor;
+    public string Data { get; private set; }
+    public string Tipo { get; private set; }
+    public double Valor { get; private set; }
 
-    public Despesa()
-    {
-        
-    }
+    public Movimentacao() { }
 
-    public ~Despesa()
+    public Movimentacao(string data, string tipo, double valor)
     {
-        
-    }
-
-    public string get_data()
-    {
-        return data;
-    }
-
-    public string get_tipo()
-    {
-        return tipo;
-    }
-
-    public double get_valor()
-    {
-        return valor;
+        Data = data;
+        Tipo = tipo;
+        Valor = valor;
     }
 
     public void calcular_despesa()
     {
-        
+        Console.WriteLine("Calculando despesas...");
     }
 }
