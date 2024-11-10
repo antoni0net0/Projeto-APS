@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.4">
   <diagram name="Página-1" id="xVppTYWSLuhgbpIBNBVG">
-    <mxGraphModel dx="1500" dy="796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1034" dy="459" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -23,16 +23,16 @@
           <mxGeometry y="118" width="320" height="122" as="geometry" />
         </mxCell>
         <mxCell id="4lN7bgh5_-2P6vui4onR-5" value="Empresa" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="703" y="465" width="320" height="240" as="geometry" />
+          <mxGeometry x="703" y="465" width="320" height="210" as="geometry" />
         </mxCell>
         <mxCell id="4lN7bgh5_-2P6vui4onR-6" value="-senha: string&lt;div&gt;-cnpj: string&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;-listaFuncionarios: list&amp;lt;Funcionario&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;-despesaTotal: double&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4lN7bgh5_-2P6vui4onR-5" vertex="1">
-          <mxGeometry y="26" width="320" height="84" as="geometry" />
+          <mxGeometry y="26" width="320" height="74" as="geometry" />
         </mxCell>
         <mxCell id="4lN7bgh5_-2P6vui4onR-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="4lN7bgh5_-2P6vui4onR-5" vertex="1">
-          <mxGeometry y="110" width="320" height="8" as="geometry" />
+          <mxGeometry y="100" width="320" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="4lN7bgh5_-2P6vui4onR-8" value="&lt;div&gt;&amp;lt;&amp;lt;create&amp;gt;&amp;gt;+Empresa()&lt;/div&gt;&lt;div&gt;&amp;lt;&amp;lt;destroy&amp;gt;&amp;gt;+Empresa()&lt;/div&gt;+login(): void&lt;div&gt;+logout(): void&lt;/div&gt;&lt;div&gt;&lt;div&gt;+get_cnpj(): string&lt;/div&gt;&lt;div&gt;&lt;div&gt;+get_endereco(): string&lt;/div&gt;&lt;div&gt;&lt;div&gt;+verificarDespesas(list&amp;lt;Funcionario&amp;gt;* lista): double&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4lN7bgh5_-2P6vui4onR-5" vertex="1">
-          <mxGeometry y="118" width="320" height="122" as="geometry" />
+        <mxCell id="4lN7bgh5_-2P6vui4onR-8" value="&lt;div&gt;&amp;lt;&amp;lt;create&amp;gt;&amp;gt;+Empresa()&lt;/div&gt;&lt;div&gt;&amp;lt;&amp;lt;destroy&amp;gt;&amp;gt;+Empresa()&lt;/div&gt;+login(): void&lt;div&gt;+logout(): void&lt;/div&gt;&lt;div&gt;&lt;div&gt;+get_cnpj(): string&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+verificarDespesas(list&amp;lt;Funcionario&amp;gt;* lista): double&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4lN7bgh5_-2P6vui4onR-5" vertex="1">
+          <mxGeometry y="108" width="320" height="102" as="geometry" />
         </mxCell>
         <mxCell id="4lN7bgh5_-2P6vui4onR-14" value="Funcionario" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1385" y="465" width="320" height="200" as="geometry" />
