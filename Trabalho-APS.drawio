@@ -137,7 +137,7 @@
         <mxCell id="VyoaDBeNMpeF1TZwAVcI-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VyoaDBeNMpeF1TZwAVcI-21" target="VyoaDBeNMpeF1TZwAVcI-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VyoaDBeNMpeF1TZwAVcI-21" value="Gerente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+        <mxCell id="VyoaDBeNMpeF1TZwAVcI-21" value="Gerente Financeiro" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
           <mxGeometry x="860" y="1900" width="30" height="66" as="geometry" />
         </mxCell>
         <mxCell id="VyoaDBeNMpeF1TZwAVcI-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="VyoaDBeNMpeF1TZwAVcI-22" target="VyoaDBeNMpeF1TZwAVcI-6">
