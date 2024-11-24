@@ -101,7 +101,7 @@
         </mxCell>
         <object label="" Administrador="" id="VyoaDBeNMpeF1TZwAVcI-2">
           <mxCell style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
-            <mxGeometry x="765" y="1630" width="990" height="490" as="geometry" />
+            <mxGeometry x="750" y="1630" width="990" height="490" as="geometry" />
           </mxCell>
         </object>
         <mxCell id="VyoaDBeNMpeF1TZwAVcI-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="VyoaDBeNMpeF1TZwAVcI-1" target="VyoaDBeNMpeF1TZwAVcI-6">
