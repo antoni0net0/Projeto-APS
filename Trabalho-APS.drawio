@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.4">
   <diagram name="Página-1" id="xVppTYWSLuhgbpIBNBVG">
-    <mxGraphModel dx="1075" dy="503" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1518" dy="709" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -93,7 +93,7 @@
         <mxCell id="4lN7bgh5_-2P6vui4onR-35" value="&lt;div&gt;&lt;div&gt;&amp;lt;&amp;lt;create&amp;gt;&amp;gt;+Relatorio()&lt;/div&gt;&lt;div&gt;&amp;lt;&amp;lt;destroy&amp;gt;&amp;gt;+Relatorio()&lt;/div&gt;&lt;/div&gt;+gerarRelatorioAnual(): void&lt;div&gt;+gerarRelatorioMensal(): void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4lN7bgh5_-2P6vui4onR-32" vertex="1">
           <mxGeometry y="68" width="320" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="wjM78Z9Hd9G8PXhaCGz0-2" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Entidade&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="wjM78Z9Hd9G8PXhaCGz0-2" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Entidades&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1051" y="80" width="380" height="30" as="geometry" />
         </mxCell>
         <mxCell id="wjM78Z9Hd9G8PXhaCGz0-4" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Administrados&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
