@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="aps.Views.UserControls.SidebarButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:aps.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="180">
+    <Grid>
+        <Button x:Name="btnText" Background="White" Content="{Binding Button_Content}" FontSize="14" Foreground="DarkGray" BorderThickness="0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"></Setter>
+                    <Setter Property="BorderThickness" Value="0"></Setter>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</UserControl>
