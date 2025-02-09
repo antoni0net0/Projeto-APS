@@ -314,6 +314,41 @@
         <mxCell id="Gv1TBAWN-ivir8XIWwHV-111" value="Logout efetuado com sucesso" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2460" y="1880" width="145" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="Gv1TBAWN-ivir8XIWwHV-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Gv1TBAWN-ivir8XIWwHV-113" target="Gv1TBAWN-ivir8XIWwHV-114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Gv1TBAWN-ivir8XIWwHV-113" value="Conecta" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1900" y="2110" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Gv1TBAWN-ivir8XIWwHV-129" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Gv1TBAWN-ivir8XIWwHV-114" target="Gv1TBAWN-ivir8XIWwHV-128">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Gv1TBAWN-ivir8XIWwHV-130" value="se o DB não existir" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Gv1TBAWN-ivir8XIWwHV-129">
+          <mxGeometry x="-0.0861" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Gv1TBAWN-ivir8XIWwHV-114" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="2176" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Gv1TBAWN-ivir8XIWwHV-115" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Gv1TBAWN-ivir8XIWwHV-114" target="Gv1TBAWN-ivir8XIWwHV-125">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2010" y="2280" as="sourcePoint" />
+            <mxPoint x="1959.44" y="2325.6" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1960" y="2310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Gv1TBAWN-ivir8XIWwHV-116" value="Se o DB existir" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="Gv1TBAWN-ivir8XIWwHV-115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Gv1TBAWN-ivir8XIWwHV-125" value="Conecta com o DB" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1887.5" y="2345" width="145" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Gv1TBAWN-ivir8XIWwHV-128" value="Cria o DB" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2200" y="2199" width="120" height="34" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
