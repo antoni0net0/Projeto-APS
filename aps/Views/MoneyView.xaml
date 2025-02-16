@@ -14,15 +14,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Define two columns for the top row -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
         <TextBlock Text="Movimentações" FontSize="20" FontWeight="SemiBold" Margin="20"/>
 
-        <ListView Grid.Row="1" Margin="20" x:Name="listView">
+        <Button Grid.Column="1" Grid.Row="0" Content="Adicionar" Height="30" Width="70" HorizontalAlignment="Right" Margin="0,0,100,0" Click="Add_Transaction"/>
+        <Button Grid.Column="1" Grid.Row="0" Content="Remover" Height="30" Width="70" HorizontalAlignment="Right" Margin="0,0,20,0" Click="Remove_Transaction"/>
+
+        <ListView ItemsSource="{Binding Transactions}" Grid.Row="1" Grid.ColumnSpan="2" Margin="20" x:Name="listView">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="20"/>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="25"/>
                     <GridViewColumn Header="Tipo" DisplayMemberBinding="{Binding Type}" Width="80"/>
-                    <GridViewColumn Header="Descrição" DisplayMemberBinding="{Binding Description}" Width="270"/>
-                    <GridViewColumn Header="Valor" DisplayMemberBinding="{Binding Value}" Width="50"/>
+                    <GridViewColumn Header="Descrição" DisplayMemberBinding="{Binding Description}" Width="260"/>
+                    <GridViewColumn Header="Valor" DisplayMemberBinding="{Binding Value}" Width="60"/>
                     <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="80"/>
                     <GridViewColumn Header="Data" DisplayMemberBinding="{Binding Date}" Width="80"/>
                 </GridView>

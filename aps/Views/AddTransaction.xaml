@@ -1,0 +1,33 @@
+﻿<Window x:Class="aps.Views.AddTransaction"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:aps.Views"
+        xmlns:userControls="clr-namespace:aps.Views.UserControls"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d"
+        Title="Adicionar movimentação" Height="450" Width="300">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Adicionar nova movimentação" FontWeight="SemiBold"  HorizontalAlignment="Center"/>
+            <userControls:TextBoxNew x:Name="txtDesc" Height="40" Width="170" Margin="5" Placeholder="Descrição"/>
+            <userControls:TextBoxNew x:Name="txtDate" Height="40" Width="170" Margin="5" Placeholder="Data (**/**/**)" />
+            <userControls:TextBoxNew x:Name="txtValue" Height="40" Width="170" Margin="5" Placeholder="Valor" />
+            <TextBlock Text="Tipo:" Margin="7,0,0,0"/>
+            <ComboBox x:Name="cboType" Height="40" Width="170" Margin="5" SelectedIndex="0">
+                <ComboBoxItem Content="Despesa"/>
+                <ComboBoxItem Content="Receita"/>
+            </ComboBox>
+            <TextBlock Text="Status:" Margin="7,0,0,0"/>
+            <ComboBox x:Name="cboStatus" Height="40" Width="170" Margin="5" SelectedIndex="0">
+                <ComboBoxItem Content="Concluida"/>
+                <ComboBoxItem Content="Pendente"/>
+                <ComboBoxItem Content="Cancelada"/>
+            </ComboBox>
+            <Button Content="Adicionar" Style="{StaticResource ConfirmButtonStyle}" Click="Add_Transaction"></Button>
+            <Button Content="Cancelar" Style="{StaticResource CancelButtonStyle}" Click="Cancel_Transaction"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

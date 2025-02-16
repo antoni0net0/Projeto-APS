@@ -13,19 +13,35 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Movimentações" FontSize="20" FontWeight="SemiBold" Margin="20"/>
+        <!-- Define two columns for the top row -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="Funcionários" FontSize="20" FontWeight="SemiBold" Margin="20"/>
 
-        <ListView Grid.Row="1" Margin="20" x:Name="listView">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="20"/>
-                    <GridViewColumn Header="Tipo" DisplayMemberBinding="{Binding Type}" Width="80"/>
-                    <GridViewColumn Header="Descrição" DisplayMemberBinding="{Binding Description}" Width="270"/>
-                    <GridViewColumn Header="Valor" DisplayMemberBinding="{Binding Value}" Width="50"/>
-                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="80"/>
-                    <GridViewColumn Header="Data" DisplayMemberBinding="{Binding Date}" Width="80"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Button Grid.Column="1" Grid.Row="0" Content="Adicionar" Height="30" Width="70" HorizontalAlignment="Right" Margin="0,0,190,0" Click="Add_Employee"/>
+        <Button Grid.Column="1" Grid.Row="0" Content="Remover" Height="30" Width="70" HorizontalAlignment="Right" Margin="0,0,110,0" Click="Remove_Employee"/>
+        <Button Grid.Column="1" Grid.Row="0" Content="Criar usuário" Height="30" Width="80" HorizontalAlignment="Right" Margin="0,0,20,0" Click="Create_User"/>
+
+        <ScrollViewer Grid.Row="1" 
+                      Grid.ColumnSpan="2"
+                      HorizontalScrollBarVisibility="Auto" 
+                      VerticalScrollBarVisibility="Auto">
+            <ListView ItemsSource="{Binding Employees}" Margin="20" x:Name="listView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="25"/>
+                        <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                        <GridViewColumn Header="Função" DisplayMemberBinding="{Binding Role}" Width="100"/>
+                        <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="170"/>
+                        <GridViewColumn Header="Endereço" DisplayMemberBinding="{Binding Address}" Width="170"/>
+                        <GridViewColumn Header="CPF" DisplayMemberBinding="{Binding Cpf}" Width="120"/>
+                        <GridViewColumn Header="Salário" DisplayMemberBinding="{Binding Wage}" Width="80"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using aps.ViewModel;
 using aps_project;
 
 namespace aps.Views
@@ -21,10 +10,21 @@ namespace aps.Views
     public partial class AppWindow : Window
     {
         public static Company LoggedCompany { get; set; } = null!;
+
         public AppWindow(Company comp)
         {
             InitializeComponent();
             LoggedCompany = comp;
+            lblLoggedCompany.Text = LoggedCompany.Name;
+            this.DataContext = new MainViewModel();
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current is App app)
+            {
+                app.Restart();
+            }
         }
     }
 }

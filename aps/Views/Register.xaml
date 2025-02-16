@@ -6,20 +6,20 @@
       xmlns:local="clr-namespace:aps.Views"
       xmlns:userControls="clr-namespace:aps.Views.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="250"
+      d:DesignHeight="500" d:DesignWidth="300"
       Title="Register">
 
     <Grid Background="White">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="Dados da empresa:" />
-            <userControls:TextBoxNew x:Name="txtCompanyName" Height="35" Width="150" Margin="5" Placeholder="Nome"/>
-            <userControls:TextBoxNew x:Name="txtCompanyRole" Height="35" Width="150" Margin="5" Placeholder="Funçao"/>
-            <userControls:TextBoxNew x:Name="txtCompanyPhone" Height="35" Width="150" Margin="5" Placeholder="Telefone"/>
-            <userControls:TextBoxNew x:Name="txtCompanyEmail" Height="35" Width="150" Margin="5" Placeholder="Email"/>
-            <userControls:TextBoxNew x:Name="txtCompanyAddress" Height="35" Width="150" Margin="5" Placeholder="Endereço"/>
-            <userControls:TextBoxNew x:Name="txtCompanyCnpj" Height="35" Width="150" Margin="5" Placeholder="CNPJ" />
-            <Button Content="Registrar" Margin="5" Height="30" Width="60" Click="Button_Click"></Button>
-            <Button Content="Voltar" Margin="5" Height="30" Width="60" Click="Button_Back"></Button>
+            <TextBlock Text="Dados da empresa" FontWeight="SemiBold" FontSize="15" HorizontalAlignment="Center"/>
+            <userControls:TextBoxNew x:Name="txtCompanyName" Height="40" Width="170" Margin="5" Placeholder="Nome"/>
+            <userControls:TextBoxNew x:Name="txtCompanyRole" Height="40" Width="170" Margin="5" Placeholder="Funçao"/>
+            <userControls:TextBoxNew x:Name="txtCompanyPhone" Height="40" Width="170" Margin="5" Placeholder="Telefone"/>
+            <userControls:TextBoxNew x:Name="txtCompanyEmail" Height="40" Width="170" Margin="5" Placeholder="Email"/>
+            <userControls:TextBoxNew x:Name="txtCompanyAddress" Height="40" Width="170" Margin="5" Placeholder="Endereço"/>
+            <userControls:TextBoxNew x:Name="txtCompanyCnpj" Height="40" Width="170" Margin="5" Placeholder="CNPJ" />
+            <Button Content="Registrar" Style="{StaticResource ConfirmButtonStyle}" Margin="5" Height="40" Width="80" Click="Button_Click"></Button>
+            <Button Content="Voltar" Style="{StaticResource CancelButtonStyle}" Margin="5" Height="40" Width="80" Click="Button_Back"></Button>
         </StackPanel>
     </Grid>
 </Page>

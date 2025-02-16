@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.ComponentModel.Design;
+using System.Data;
 using System.Windows;
 using aps_project;
 using Microsoft.Data.Sqlite;
@@ -20,7 +21,6 @@ namespace aps.src
                 throw new Exception("Caminho do diretório inválido para o banco de dados.");
             }
             System.IO.Directory.CreateDirectory(directory);
-            MessageBox.Show($"Database path: {dbPath}");
 
             sqlite = new SqliteConnection($"Data Source={dbPath}");
             CreateTables();
@@ -176,6 +176,49 @@ namespace aps.src
                 sqlite.Close();
             }
         }
+
+        public int AddTransaction(Transaction transaction)
+        {
+            try
+            {
+                sqlite.Open();
+                // SQL command that inserts a new transaction and returns the generated id.
+                string sql = @"
+                INSERT INTO transactions (description, value, date, status, type, company_id)
+                VALUES (@description, @value, @date, @status, @type, @company_id);
+                SELECT last_insert_rowid();";
+
+                using (SqliteCommand command = new SqliteCommand(sql, sqlite))
+                {
+                    command.Parameters.AddWithValue("@description", transaction.Description);
+                    command.Parameters.AddWithValue("@value", transaction.Value);
+                    command.Parameters.AddWithValue("@date", transaction.Date);
+                    command.Parameters.AddWithValue("@status", transaction.Status);
+                    command.Parameters.AddWithValue("@type", transaction.Type);
+                    command.Parameters.AddWithValue("@company_id", transaction.CompanyId);
+
+                    object? result = command.ExecuteScalar();
+                    if (result == null)
+                    {
+                        throw new Exception("Null value returned when inserting transaction.");
+                    }
+
+                    long newId = Convert.ToInt64(result);
+                    transaction.Id = (int)newId; // Assign the generated id to the transaction object.
+                    return transaction.Id;
+                }
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine($"Error inserting transaction: {ex.Message}");
+                return -1;
+            }
+            finally
+            {
+                sqlite.Close();
+            }
+        }
+
         public void addUser(string username, string hashedPassword, int employeeId)
         {
             // Modified to use parameters
@@ -271,6 +314,104 @@ namespace aps.src
             }
             return company;
         }
+        public List<Employee> GetEmployees(int companyId)
+        {
+            List<Employee> employees = new List<Employee>();
+
+            try
+            {
+                sqlite.Open();
+                string sql = @"
+                SELECT id, name, role_company, phone_number, email, address, cpf, wage, company_id 
+                FROM employee 
+                WHERE company_id = @companyId;";
+
+                using (SqliteCommand command = new SqliteCommand(sql, sqlite))
+                {
+                    command.Parameters.AddWithValue("@companyId", companyId);
+
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Read each field from the database.
+                            int id = Convert.ToInt32(reader["id"]);
+                            string name = reader["name"].ToString()!;
+                            string roleCompany = reader["role_company"].ToString()!;
+                            string phone = reader["phone_number"].ToString()!;
+                            string email = reader["email"].ToString()!;
+                            string address = reader["address"].ToString()!;
+                            string cpf = reader["cpf"].ToString()!;
+                            double wage = Convert.ToDouble(reader["wage"]);
+                            int compId = Convert.ToInt32(reader["company_id"]);
+
+                            // Create an Employee instance.
+                            // Adjust the constructor parameters according to your Employee class definition.
+                            Employee employee = new Employee(wage, roleCompany, compId, cpf, name, email, phone, address);
+                            employee.Id = id;
+
+                            employees.Add(employee);
+                        }
+                    }
+                }
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine($"Erro ao buscar funcionários: {ex.Message}");
+            }
+            finally
+            {
+                sqlite.Close();
+            }
+
+            return employees;
+        }
+
+        public List<Transaction> GetTransactions(int companyId)
+        {
+            List<Transaction> transactions = new List<Transaction>();
+
+            try
+            {
+                sqlite.Open();
+                string sql = @"
+                SELECT id, description, date, type, value, status
+                FROM transactions 
+                WHERE company_id = @companyId;";
+
+                using (SqliteCommand command = new SqliteCommand(sql, sqlite))
+                {
+                    command.Parameters.AddWithValue("@companyId", companyId);
+
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["id"]);
+                            string description = reader["description"].ToString()!;
+                            string date = reader["date"].ToString()!;
+                            string type = reader["type"].ToString()!;
+                            double value = Convert.ToDouble(reader["value"]);
+                            string status = reader["status"].ToString()!;
+
+                            // Create a Transaction instance
+                            Transaction transaction = new Transaction(description, date, type, value, status, companyId, id);
+                            transactions.Add(transaction);
+                        }
+                    }
+                }
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine($"Erro ao buscar transações: {ex.Message}");
+            }
+            finally
+            {
+                sqlite.Close();
+            }
+
+            return transactions;
+        }
 
         public DataTable GetUsers()
         {
@@ -300,6 +441,57 @@ namespace aps.src
                 sqlite.Close();
             }
         }
+
+        public bool RemoveEmployee(int employeeId)
+        {
+            try
+            {
+                sqlite.Open();
+                string sql = "DELETE FROM employee WHERE id = @id;";
+
+                using (SqliteCommand command = new SqliteCommand(sql, sqlite))
+                {
+                    command.Parameters.AddWithValue("@id", employeeId);
+                    int affectedRows = command.ExecuteNonQuery();
+                    return affectedRows > 0;
+                }
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine($"Erro ao remover funcionário: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                sqlite.Close();
+            }
+        }
+
+        public bool RemoveTransaction(int transactionId)
+        {
+            try
+            {
+                sqlite.Open();
+                string sql = "DELETE FROM transactions WHERE id = @id;";
+
+                using (SqliteCommand command = new SqliteCommand(sql, sqlite))
+                {
+                    command.Parameters.AddWithValue("@id", transactionId);
+                    int affectedRows = command.ExecuteNonQuery();
+                    return affectedRows > 0;
+                }
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine($"Erro ao remover transação: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                sqlite.Close();
+            }
+        }
+
 
         private void ExecuteNonQuery(SqliteCommand command)
         {

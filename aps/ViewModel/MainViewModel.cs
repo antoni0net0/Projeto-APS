@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using aps.src;
+using aps.Views;
 
 namespace aps.ViewModel
 {
@@ -32,9 +33,9 @@ namespace aps.ViewModel
 
         public MainViewModel()
         {
-            HomeVM = new HomeViewModel();
-            MoneyVM = new MoneyViewModel();
-            EmployeeVM = new EmployeeViewModel();
+            MoneyVM = new MoneyViewModel(AppWindow.LoggedCompany.Id);
+            EmployeeVM = new EmployeeViewModel(AppWindow.LoggedCompany.Id);
+            HomeVM = new HomeViewModel(MoneyVM, EmployeeVM);
 
             CurrentView = HomeVM;
 

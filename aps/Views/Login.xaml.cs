@@ -46,11 +46,12 @@ namespace aps.Views
                 Company? company = App.DbService.GetCompany(companyId);
                 if (company == null)
                 {
-                    MessageBox.Show("Company does not exist");
+                    MessageBox.Show("Émpresa nao existe");
                     return;
                 }
 
                 AppWindow appWindow = new AppWindow(company);
+                Application.Current.MainWindow = appWindow;
                 appWindow.Show();
 
                 Window? currentWindow = Window.GetWindow(this);

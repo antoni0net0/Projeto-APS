@@ -44,8 +44,11 @@ namespace aps.Views
                 Employee adminEmployee = new Employee(0, "Administrator", newId, "0", "Admin", "Admin@admin.com", "1234", "rua");
                 int adminId = App.DbService.AddEmployee(adminEmployee);
 
-                App.DbService.addUser("admin", "admin", adminId);
-                MessageBox.Show($"Empresa registrada com sucesso! ID: {newId}");
+                string user = GenerateRandomString();
+                string passwd = GenerateRandomString();
+
+                App.DbService.addUser(user, passwd, adminId);
+                CustomMessageBox.Show($"Empresa registrada com sucesso! Para entrar, usuário: {user}, senha: {passwd}");
 
                 // Obtenha a referência ao Frame
                 var frame = (Parent as Page)?.Parent as Frame ??
@@ -67,6 +70,20 @@ namespace aps.Views
 
             // Navegue
             frame?.Navigate(new Uri("Views/Landing.xaml", UriKind.Relative));
+        }
+
+        public static string GenerateRandomString()
+        {
+            const string allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+
+            char[] password = new char[6];
+            for (int i = 0; i < 6; i++)
+            {
+                password[i] = allowedCharacters[random.Next(allowedCharacters.Length)];
+            }
+
+            return new string(password);
         }
     }
 }
