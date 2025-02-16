@@ -43,7 +43,7 @@ namespace aps.Views
 
             if (employee == null)
             {
-                MessageBox.Show("Por favor selecione um funcionário para remover");
+                MessageBox.Show("Por favor selecione um funcionário");
                 return;
             }
 
