@@ -1,20 +1,20 @@
 namespace aps_project;
 
-class Entity
+public class Entity
 {
-    protected int id;
-    protected string Name { get; private set; }
-    protected string Email { get; private set; }
-    protected string Phone { get; private set; }
-    protected string Address { get; private set; }
+    public int Id { get; set; }
+    public string Name { get; private set; }
+    public string Email { get; private set; }
+    public string Phone { get; private set; }
+    public string Address { get; private set; }
 
-    public Entity()
+    public Entity( string name, string email, string phone, string address)
     {
-    }
-
-    public int GetID()
-    {
-        return id;
+        Id = -1;
+        Name = name;
+        Email = email;
+        Phone = phone;
+        Address = address;
     }
     
 }

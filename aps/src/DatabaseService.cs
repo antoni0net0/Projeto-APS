@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
+using System.Windows;
+using aps_project;
 using Microsoft.Data.Sqlite;
 
 namespace aps.src
@@ -17,8 +14,13 @@ namespace aps.src
             var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var dbPath = System.IO.Path.Combine(appDataPath, "aps", "database.db");
 
-            // Ensure directory exists
-            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(dbPath));
+            var directory = System.IO.Path.GetDirectoryName(dbPath);
+            if (directory == null)
+            {
+                throw new Exception("Caminho do diretório inválido para o banco de dados.");
+            }
+            System.IO.Directory.CreateDirectory(directory);
+            MessageBox.Show($"Database path: {dbPath}");
 
             sqlite = new SqliteConnection($"Data Source={dbPath}");
             CreateTables();
@@ -30,18 +32,54 @@ namespace aps.src
             {
                 sqlite.Open();
                 string sql = @"
-                CREATE TABLE IF NOT EXISTS users(
+                CREATE TABLE IF NOT EXISTS company (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    role TEXT NOT NULL,
+                    phone_number TEXT NOT NULL,
+                    email TEXT NOT NULL,
+                    address TEXT NOT NULL,
+                    cnpj INTEGER NOT NULL
+                );
+
+                CREATE TABLE IF NOT EXISTS employee (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    role_company TEXT NOT NULL,
+                    phone_number TEXT NOT NULL,
+                    email TEXT NOT NULL,
+                    address TEXT NOT NULL,
+                    cpf INTEGER NOT NULL,
+                    wage INTEGER NOT NULL,
+                    company_id INTEGER NOT NULL,
+                    FOREIGN KEY (company_id) REFERENCES company(id)
+                );
+
+                CREATE TABLE IF NOT EXISTS transactions (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    description TEXT NOT NULL,
+                    value INTEGER NOT NULL,
+                    date DATE NOT NULL,
+                    status TEXT NOT NULL,
+                    type TEXT NOT NULL,
+                    company_id INTEGER NOT NULL,
+                    FOREIGN KEY (company_id) REFERENCES company(id)
+                );
+
+                CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT NOT NULL,
-                    hashed_password TEXT NOT NULL
-            );";
+                    hashed_password TEXT NOT NULL,
+                    id_employee INTEGER NOT NULL,
+                    FOREIGN KEY (id_employee) REFERENCES employee(id)
+                );";
 
                 using (SqliteCommand command = new SqliteCommand(sql, sqlite))
                 {
                     command.ExecuteNonQuery();
                 }
 
-                Console.WriteLine("Table created");
+                Console.WriteLine("Tables created");
             }
             catch (SqliteException e)
             {
@@ -52,39 +90,186 @@ namespace aps.src
                 sqlite.Close();
             }
         }
-        public void InsertData(string table, Dictionary<string, object> values)
+        public int AddCompany(Company company)
         {
             try
             {
+                // Abre a conexão com o banco de dados
                 sqlite.Open();
 
-                string columns = string.Join(", ", values.Keys);
-                string placeholders = string.Join(", ", values.Keys.Select(k => $"@{k}"));
+                // SQL para inserir os dados da empresa
+                string sql = @"
+                INSERT INTO company (name, role, phone_number, email, address, cnpj)
+                VALUES (@name, @role, @phone_number, @email, @address, @cnpj);
+                SELECT last_insert_rowid();";
 
-                string sql = $"INSERT INTO {table} ({columns}) VALUES ({placeholders});";
-
+                // Cria o comando e adiciona os parâmetros
                 using (SqliteCommand command = new SqliteCommand(sql, sqlite))
                 {
-                    // Add each parameter with its corresponding value.
-                    foreach (var pair in values)
+                    command.Parameters.AddWithValue("@name", company.Name);
+                    command.Parameters.AddWithValue("@role", company.Role);
+                    command.Parameters.AddWithValue("@phone_number", company.Phone);
+                    command.Parameters.AddWithValue("@email", company.Email);
+                    command.Parameters.AddWithValue("@address", company.Address);
+                    command.Parameters.AddWithValue("@cnpj", company.Cnpj);
+
+                    object? result = command.ExecuteScalar();
+                    if (result == null)
                     {
-                        command.Parameters.AddWithValue("@" + pair.Key, pair.Value);
+                        throw new Exception("Valor nulo retornado na inserção da empresa.");
                     }
-
-                    // Execute the query.
-                    command.ExecuteNonQuery();
+                    long newId = Convert.ToInt64(result);
+                    company.Id = (int)newId; // Atribui o id gerado ao objeto
+                    return company.Id;
                 }
-
-                Console.WriteLine("Data inserted successfully");
             }
-            catch (SqliteException e)
+            catch (SqliteException ex)
             {
-                Console.WriteLine($"Error inserting data: {e.Message}");
+                Console.WriteLine($"Erro ao inserir empresa: {ex.Message}");
+                return -1;
             }
             finally
             {
                 sqlite.Close();
             }
+        }
+        public int AddEmployee(Employee employee)
+        {
+            try
+            {
+                sqlite.Open();
+                // SQL command that inserts a new employee and returns the generated id.
+                string sql = @"
+                INSERT INTO employee (name, role_company, phone_number, email, address, cpf, wage, company_id)
+                VALUES (@name, @role_company, @phone_number, @email, @address, @cpf, @wage, @company_id);
+                SELECT last_insert_rowid();";
+
+                using (SqliteCommand command = new SqliteCommand(sql, sqlite))
+                {
+                    command.Parameters.AddWithValue("@name", employee.Name);
+                    command.Parameters.AddWithValue("@role_company", employee.Role);
+                    command.Parameters.AddWithValue("@phone_number", employee.Phone);
+                    command.Parameters.AddWithValue("@email", employee.Email);
+                    command.Parameters.AddWithValue("@address", employee.Address);
+                    command.Parameters.AddWithValue("@cpf", employee.Cpf);
+                    command.Parameters.AddWithValue("@wage", employee.Wage);
+                    command.Parameters.AddWithValue("@company_id", employee.CompanyId);
+
+                    // Execute the command and retrieve the last inserted row id.
+                    object? result = command.ExecuteScalar();
+                    if (result == null)
+                    {
+                        throw new Exception("Valor nulo retornado na inserção da empresa.");
+                    }
+                    long newId = Convert.ToInt64(result);
+                    employee.Id = (int)newId; // Assign the generated id to the employee object.
+                    return employee.Id;
+                }
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine($"Erro ao inserir funcionário: {ex.Message}");
+                return -1;
+            }
+            finally
+            {
+                sqlite.Close();
+            }
+        }
+        public void addUser(string username, string hashedPassword, int employeeId)
+        {
+            // Modified to use parameters
+            using (var cmd = new SqliteCommand(
+                "INSERT INTO users (username, hashed_password, id_employee) VALUES (@username, @password, @id_employee)",
+                sqlite))
+            {
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", hashedPassword);
+                cmd.Parameters.AddWithValue("@id_employee", employeeId);
+                ExecuteNonQuery(cmd);
+            }
+        }
+
+        public int CheckUser(string username, string password)
+        {
+            try
+            {
+                sqlite.Open();
+                // This query joins the 'users' and 'employee' tables
+                // and selects the company_id for a matching username and password.
+                string sql = @"
+                SELECT e.company_id 
+                FROM users u 
+                INNER JOIN employee e ON u.id_employee = e.id
+                WHERE u.username = @username AND u.hashed_password = @password;";
+
+                using (SqliteCommand command = new SqliteCommand(sql, sqlite))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
+
+                    object? result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        // User not found or invalid credentials
+                        return -1;
+                    }
+                }
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine("Erro ao verificar usuário: " + ex.Message);
+                return -1;
+            }
+            finally
+            {
+                sqlite.Close();
+            }
+        }
+
+        public Company? GetCompany(int companyId)
+        {
+            Company? company = null;
+            try
+            {
+                sqlite.Open();
+                string sql = "SELECT id, name, role, phone_number, email, address, cnpj FROM company WHERE id = @id;";
+                using (SqliteCommand command = new SqliteCommand(sql, sqlite))
+                {
+                    command.Parameters.AddWithValue("@id", companyId);
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Retrieve values from the database.
+                            int id = Convert.ToInt32(reader["id"]);
+                            string name = reader["name"].ToString()!;
+                            string role = reader["role"].ToString()!;
+                            string phone = reader["phone_number"].ToString()!;
+                            string email = reader["email"].ToString()!;
+                            string address = reader["address"].ToString()!;
+                            string cnpj = reader["cnpj"].ToString()!;
+
+                            // Create a new Company instance.
+                            company = new Company(name, email, phone, address, role, cnpj);
+                            company.Id = id; // Set the auto-generated id.
+                        }
+                    }
+                }
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine("Erro ao buscar empresa: " + ex.Message);
+            }
+            finally
+            {
+                sqlite.Close();
+            }
+            return company;
         }
 
         public DataTable GetUsers()
@@ -113,19 +298,6 @@ namespace aps.src
             finally
             {
                 sqlite.Close();
-            }
-        }
-
-        public void InsertUser(string username, string hashedPassword)
-        {
-            // Modified to use parameters
-            using (var cmd = new SqliteCommand(
-                "INSERT INTO users (name, hashed_password) VALUES (@name, @password)",
-                sqlite))
-            {
-                cmd.Parameters.AddWithValue("@name", username);
-                cmd.Parameters.AddWithValue("@password", hashedPassword);
-                ExecuteNonQuery(cmd);
             }
         }
 

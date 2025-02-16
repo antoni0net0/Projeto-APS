@@ -34,5 +34,15 @@ namespace aps.Views
             // Navegue
             frame?.Navigate(new Uri("Views/Login.xaml", UriKind.Relative));
         }
+
+        private void Register_Click(object sender, RoutedEventArgs e)
+        {
+            // Obtenha a referência ao Frame
+            var frame = (Parent as Page)?.Parent as Frame ??
+                        Application.Current.MainWindow.FindName("MainFrame") as Frame;
+
+            // Navegue
+            frame?.Navigate(new Uri("Views/Register.xaml", UriKind.Relative));
+        }
     }
 }

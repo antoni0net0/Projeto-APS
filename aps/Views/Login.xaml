@@ -6,14 +6,15 @@
       xmlns:local="clr-namespace:aps.Views"
       xmlns:userControls="clr-namespace:aps.Views.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="400" d:DesignWidth="250"
       Title="Login">
 
     <Grid Background="White">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <userControls:TextBoxNew Height="35" Width="150" Margin="5" Placeholder="Nome"/>
-            <userControls:TextBoxNew Height="35" Width="150" Placeholder="Senha" />
-            <Button Content="Entar" Margin="5" Height="30" Width="60"></Button>
+            <userControls:TextBoxNew x:Name="txtNome" Height="35" Width="150" Margin="5" Placeholder="Nome"/>
+            <userControls:TextBoxNew x:Name="txtSenha" Height="35" Width="150" Placeholder="Senha" />
+            <Button Content="Entar" Margin="5" Height="30" Width="60" Click="Button_Click"></Button>
+            <Button Content="Voltar" Margin="5" Height="30" Width="60" Click="Button_Back"></Button>
         </StackPanel>
     </Grid>
 </Page>

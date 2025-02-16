@@ -1,15 +1,18 @@
 namespace aps_project;
 
-class Employee : Entity
+public class Employee : Entity
 {
-    public double Salary { get; private set; }
+    public double Wage { get; private set; }
     public string Role { get; private set; }
     public int CompanyId { get; private set; }
+    public string Cpf { get; private set; }
 
-    public Employee(double Salary, string Role, int CompanyId)
+    public Employee(double wage, string role, int companyId, string cpf, string name, string email, string phone, string address)
+        : base(name, email, phone, address)
     {
-        this.Salary = Salary;
-        this.Role = Role;
-        this.CompanyId = CompanyId;
+        this.Wage = wage;
+        this.Role = role;
+        this.CompanyId = companyId;
+        this.Cpf = cpf;
     }
 }

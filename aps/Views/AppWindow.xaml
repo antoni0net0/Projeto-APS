@@ -4,21 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:aps.Views"
+        xmlns:viewModel="clr-namespace:aps.ViewModel"
         xmlns:userControls="clr-namespace:aps.Views.UserControls"
         mc:Ignorable="d"
         Title="AppWindow" Height="600" Width="900">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <!-- Navigation bar -->
-        <StackPanel Background="LightGray">
-            <TextBlock Text="Nome da empresa" FontSize="20" HorizontalAlignment="Center" Margin="10"></TextBlock>
-            <userControls:SidebarButton Height="50" Margin="10" Button_Content="Inicio"></userControls:SidebarButton>
-            <userControls:SidebarButton Height="50" Margin="10" Button_Content="Movimentaçoes"></userControls:SidebarButton>
-            <userControls:SidebarButton Height="50" Margin="10" Button_Content="Funcionários"></userControls:SidebarButton>
-        </StackPanel>
-    </Grid>
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+    </Window.DataContext>
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock Background="Transparent" Grid.Column="1"  Text="© ACR softwares." FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"></TextBlock>
+            <TextBlock Background="Transparent" Grid.Row="0" Text="{Binding Source={x:Static local:AppWindow.LoggedCompany}, Path=Name}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,15,0,15"></TextBlock>
+            <Border Background="#f5f5f5" Grid.Row="0" Panel.ZIndex="-1"/>
+            <Border Background="#f5f5f5" Grid.Row="0" Grid.Column="1" Panel.ZIndex="-1"/>
+
+            <!-- Navigation bar -->
+            <StackPanel Background="#ebebeb" Grid.Row="1">
+                <RadioButton Content="Início" Height="50" FontSize="15" Style="{StaticResource MenuButtonTheme}" IsChecked="True" Command="{Binding HomeViewCommand}"/>
+                <RadioButton Content="Movimentações" Height="50" FontSize="15" Style="{StaticResource MenuButtonTheme}" Command="{Binding MoneyViewCommand}"/>
+                <RadioButton Content="Funcionários" Height="50" FontSize="15" Style="{StaticResource MenuButtonTheme}" Command="{Binding EmployeeViewCommand}"/>
+            </StackPanel>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10" 
+                            Content="{Binding CurrentView}"/>
+        </Grid>
+    </Border>
 </Window>

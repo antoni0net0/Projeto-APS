@@ -1,27 +1,15 @@
 namespace aps_project;
 
-class Company : Entity
+public class Company : Entity
 {
-    public string Password { get; private set; }
-    public string Cnpj { get; private set; }
-    private List<Employee> EmployeeList;
+    public string Role { get; set; }
+    public string Cnpj { get; set; }
 
-    public Company(string password, string cnpj)
+    public Company (string name, string email, string phone, string address, string role, string cnpj)
+            : base(name, email, phone, address)
     {
-        Password = password;
+        Role = role;
         Cnpj = cnpj;
-        EmployeeList = new List<Employee>();
-    }
-        
-    public void Login()
-    {
     }
 
-    public void Logout()
-    {
-    }
-
-    public void CheckExpenses(List<Employee> list)
-    {
-    }
 }

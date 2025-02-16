@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:aps.Views"
         xmlns:userControls="clr-namespace:aps.Views.UserControls"
         mc:Ignorable="d"
-        Title="Window1" Height="600" Width="900">
+        Title="Window1" Height="400" Width="250">
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
 
 </Window>

@@ -2,15 +2,21 @@ namespace aps_project;
 
 public class Transaction
 {
-    public string Date { get; private set; }
-    public string Type { get; private set; }
-    public double Value { get; private set; }
+    public int Id { get; set; }
+    public string Description { get; set; }
+    public string Date { get;  set; }
+    public string Type { get;  set; }
+    public double Value { get;  set; }
+    public string Status { get; set; }
     
-    public Transaction(string date, string type, double value)
+    public Transaction(int id, string desc, string date, string type, double value, string status)
     {
+        Id = id;
+        Description = desc;
         Date = date;
         Type = type;
         Value = value;
+        Status = status;
     }
 
     public void CalculateExpenses()

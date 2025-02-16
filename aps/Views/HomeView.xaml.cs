@@ -10,21 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using aps_project;
 
 namespace aps.Views
 {
     /// <summary>
-    /// Lógica interna para AppWindow.xaml
+    /// Interação lógica para HomeView.xam
     /// </summary>
-    public partial class AppWindow : Window
+    public partial class HomeView : UserControl
     {
-        public static Company LoggedCompany { get; set; } = null!;
-        public AppWindow(Company comp)
+        public HomeView()
         {
             InitializeComponent();
-            LoggedCompany = comp;
         }
     }
 }

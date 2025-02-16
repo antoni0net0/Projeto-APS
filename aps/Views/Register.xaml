@@ -1,0 +1,25 @@
+﻿<Page x:Class="aps.Views.Register"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:aps.Views"
+      xmlns:userControls="clr-namespace:aps.Views.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="250"
+      Title="Register">
+
+    <Grid Background="White">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Dados da empresa:" />
+            <userControls:TextBoxNew x:Name="txtCompanyName" Height="35" Width="150" Margin="5" Placeholder="Nome"/>
+            <userControls:TextBoxNew x:Name="txtCompanyRole" Height="35" Width="150" Margin="5" Placeholder="Funçao"/>
+            <userControls:TextBoxNew x:Name="txtCompanyPhone" Height="35" Width="150" Margin="5" Placeholder="Telefone"/>
+            <userControls:TextBoxNew x:Name="txtCompanyEmail" Height="35" Width="150" Margin="5" Placeholder="Email"/>
+            <userControls:TextBoxNew x:Name="txtCompanyAddress" Height="35" Width="150" Margin="5" Placeholder="Endereço"/>
+            <userControls:TextBoxNew x:Name="txtCompanyCnpj" Height="35" Width="150" Margin="5" Placeholder="CNPJ" />
+            <Button Content="Registrar" Margin="5" Height="30" Width="60" Click="Button_Click"></Button>
+            <Button Content="Voltar" Margin="5" Height="30" Width="60" Click="Button_Back"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
